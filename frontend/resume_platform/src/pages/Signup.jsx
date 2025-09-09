@@ -16,9 +16,13 @@ export default function Signup() {
     if (photo) data.append("photo", photo);
 
     try {
-      const res = await axios.post("http://localhost:8080/auth/signup", data, {
-        headers: { "Content-Type": "multipart/form-data" },
-      });
+      const res = await axios.post(
+        "https://resume-builder-backend-gfug.onrender.com/auth/signup",
+        data,
+        {
+          headers: { "Content-Type": "multipart/form-data" },
+        }
+      );
       localStorage.setItem("token", res.data.token);
       navigate("/dashboard");
     } catch (err) {

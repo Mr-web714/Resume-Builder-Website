@@ -20,7 +20,7 @@ export default function ResumeForm() {
     if (id !== "new") {
       const fetchResume = async () => {
         const token = localStorage.getItem("token");
-        const res = await axios.get("http://localhost:8080/resume", {
+        const res = await axios.get("https://resume-builder-backend-gfug.onrender.com/resume", {
           headers: { Authorization: `Bearer ${token}` },
         });
         const found = res.data.find((r) => r._id === id);
@@ -77,11 +77,11 @@ export default function ResumeForm() {
     const token = localStorage.getItem("token");
 
     if (id === "new") {
-      await axios.post("http://localhost:8080/resume", resume, {
+      await axios.post("https://resume-builder-backend-gfug.onrender.com/resume", resume, {
         headers: { Authorization: `Bearer ${token}` },
       });
     } else {
-      await axios.put(`http://localhost:8080/resume/${id}`, resume, {
+      await axios.put(`https://resume-builder-backend-gfug.onrender.com/resume/${id}`, resume, {
         headers: { Authorization: `Bearer ${token}` },
       });
     }

@@ -12,12 +12,12 @@ export default function Dashboard() {
 
     const fetchData = async () => {
       try {
-        const resUser = await axios.get("http://localhost:8080/auth/me", {
+        const resUser = await axios.get("https://resume-builder-backend-gfug.onrender.com/auth/me", {
           headers: { Authorization: `Bearer ${token}` },
         });
         setUser(resUser.data);
 
-        const resResumes = await axios.get("http://localhost:8080/resume", {
+        const resResumes = await axios.get("https://resume-builder-backend-gfug.onrender.com/resume", {
           headers: { Authorization: `Bearer ${token}` },
         });
         setResumes(resResumes.data);
@@ -36,7 +36,7 @@ export default function Dashboard() {
     if (!window.confirm("Are you sure you want to delete this resume?")) return;
 
     try {
-      await axios.delete(`http://localhost:8080/resume/${id}`, {
+      await axios.delete(`https://resume-builder-backend-gfug.onrender.com/resume/${id}`, {
         headers: { Authorization: `Bearer ${token}` },
       });
       setResumes(resumes.filter((r) => r._id !== id));
@@ -50,7 +50,7 @@ export default function Dashboard() {
     if (!token) return;
 
     try {
-      const res = await axios.get(`http://localhost:8080/resume/pdf/${id}`, {
+      const res = await axios.get(`https://resume-builder-backend-gfug.onrender.com/resume/pdf/${id}`, {
         headers: { Authorization: `Bearer ${token}` },
         responseType: "blob", // ensures we get a file
       });
@@ -73,7 +73,7 @@ export default function Dashboard() {
       <h2 className="text-xl mb-4">Welcome, {user?.name}</h2>
       {user?.profilePicture && (
         <img
-          src={`http://localhost:8080${user.profilePicture}`}
+          src={`https://resume-builder-backend-gfug.onrender.com/${user.profilePicture}`}
           alt="profile"
           className="w-24 h-24 rounded-full mb-4 object-cover"
         />
